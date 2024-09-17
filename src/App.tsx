@@ -17,8 +17,6 @@ export function App() {
 
   const runCode = () => {
     try {
-      // This is a simple evaluation. In a real-world scenario,
-      // you'd want to use a more secure method of running user code.
       const result = eval(demoCode);
       setOutput(`Output: ${result}`);
     } catch (error) {
@@ -50,6 +48,8 @@ export function App() {
         id="compile-time"
         title={copy.compileTimeTitle}
         content={copy.compileTimeContent}
+        titleClassName="text-blue-600"
+        contentClassName="text-blue-800"
       >
         <ComparisonSection
           title1={copy.compileTimeOptimizationTitle}
@@ -57,6 +57,7 @@ export function App() {
           title2={copy.runtimeFetchingTitle}
           code2={copy.CODE_SAMPLES.runtime}
           performanceData={copy.PERFORMANCE_DATA.compileTime}
+          titleClassName="text-blue-500"
         />
       </Section>
 
@@ -64,6 +65,8 @@ export function App() {
         id="local-execution"
         title={copy.localExecutionTitle}
         content={copy.localExecutionContent}
+        titleClassName="text-green-600"
+        contentClassName="text-green-800"
       >
         <ComparisonSection
           title1="Local Execution"
@@ -71,6 +74,7 @@ export function App() {
           title2="Remote Execution"
           code2={copy.CODE_SAMPLES.remoteExecution}
           performanceData={copy.PERFORMANCE_DATA.localExecution}
+          titleClassName="text-green-500"
         />
       </Section>
 
@@ -78,6 +82,8 @@ export function App() {
         id="caching"
         title={copy.cachingTitle}
         content={copy.cachingContent}
+        titleClassName="text-purple-600"
+        contentClassName="text-purple-800"
       >
         <ComparisonSection
           title1="Cached View Function"
@@ -85,6 +91,7 @@ export function App() {
           title2="Uncached View Function"
           code2={copy.CODE_SAMPLES.uncachedViewFunction}
           performanceData={copy.PERFORMANCE_DATA.cachedViewFunction}
+          titleClassName="text-purple-500"
         />
       </Section>
 
@@ -92,6 +99,8 @@ export function App() {
         id="prefetching"
         title={copy.prefetchingTitle}
         content={copy.prefetchingContent}
+        titleClassName="text-red-600"
+        contentClassName="text-red-800"
       >
         <ComparisonSection
           title1="Optimistic Prefetching"
@@ -99,6 +108,7 @@ export function App() {
           title2="Regular Fetching"
           code2={copy.CODE_SAMPLES.regularFetching}
           performanceData={copy.PERFORMANCE_DATA.optimisticPrefetching}
+          titleClassName="text-red-500"
         />
       </Section>
 
@@ -106,6 +116,8 @@ export function App() {
         id="deployless-calls"
         title={copy.deploylessCallsTitle}
         content={copy.deploylessCallsContent}
+        titleClassName="text-yellow-600"
+        contentClassName="text-yellow-800"
       >
         <ComparisonSection
           title1="Deployless Calls"
@@ -113,6 +125,7 @@ export function App() {
           title2="Traditional Calls"
           code2={copy.CODE_SAMPLES.traditionalCalls}
           performanceData={copy.PERFORMANCE_DATA.deploylessCalls}
+          titleClassName="text-yellow-500"
         />
       </Section>
 
@@ -120,6 +133,8 @@ export function App() {
         id="demo"
         title={copy.demoTitle}
         content={copy.demoContent}
+        titleClassName="text-orange-600"
+        contentClassName="text-orange-800"
       >
         <div className="mb-6">
           <h3 className="text-2xl font-bold mb-4 text-orange-600 font-serif">{copy.optimizationPlaygroundTitle}</h3>

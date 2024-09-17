@@ -2,14 +2,23 @@ import React, { useRef, useEffect } from 'react';
 import { Element } from 'react-scroll';
 import { motion, useInView, useAnimationControls } from 'framer-motion';
 
-export interface SectionProps {
+interface SectionProps {
   id: string;
   title: string;
   content: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
+  titleClassName?: string;
+  contentClassName?: string;
 }
 
-export const Section: React.FC<SectionProps> = React.memo(({ id, title, content, children }) => {
+export const Section: React.FC<SectionProps> = ({ 
+  id, 
+  title, 
+  content, 
+  children, 
+  titleClassName = "text-gray-800", 
+  contentClassName = "text-gray-600" 
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true });
   const controls = useAnimationControls();
@@ -38,7 +47,7 @@ export const Section: React.FC<SectionProps> = React.memo(({ id, title, content,
             visible: { opacity: 1, y: 0 },
             hidden: { opacity: 0, y: 20 }
           }}
-          className="text-4xl font-bold mb-6 text-gray-800 font-serif tracking-tight"
+          className={`text-4xl font-bold mb-6 font-serif tracking-tight ${titleClassName}`}
         >
           {title}
         </motion.h2>
@@ -47,7 +56,7 @@ export const Section: React.FC<SectionProps> = React.memo(({ id, title, content,
             visible: { opacity: 1, y: 0 },
             hidden: { opacity: 0, y: 20 }
           }}
-          className="text-xl text-gray-600 font-light leading-relaxed mb-8"
+          className={`text-xl font-light leading-relaxed mb-8 ${contentClassName}`}
         >
           {content}
         </motion.p>
@@ -55,4 +64,4 @@ export const Section: React.FC<SectionProps> = React.memo(({ id, title, content,
       </motion.div>
     </Element>
   );
-});
+};

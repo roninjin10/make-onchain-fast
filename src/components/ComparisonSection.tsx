@@ -1,20 +1,30 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import { CodeEditor } from '@/components//CodeEditor';
-import {BarGraph} from '@/components//BarGraph';
-export interface PerformanceDataItem {
+import {CodeEditor} from './CodeEditor';
+import {BarGraph} from './BarGraph';
+
+interface PerformanceDataItem {
   label: string;
   value: number;
 }
 
-export interface ComparisonSectionProps {
+interface ComparisonSectionProps {
   title1: string;
   code1: string;
   title2: string;
   code2: string;
   performanceData: PerformanceDataItem[];
+  titleClassName?: string;
 }
 
-export const ComparisonSection = ({ title1, code1, title2, code2, performanceData }: ComparisonSectionProps) => (
+export const ComparisonSection: React.FC<ComparisonSectionProps> = ({ 
+  title1, 
+  code1, 
+  title2, 
+  code2, 
+  performanceData,
+  titleClassName = "text-gray-800"
+}) => (
   <div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       <motion.div
@@ -23,8 +33,8 @@ export const ComparisonSection = ({ title1, code1, title2, code2, performanceDat
           hidden: { opacity: 0, x: -50 }
         }}
       >
-        <h3 className="text-2xl font-bold mb-4 text-gray-800 font-serif">{title1}</h3>
-        <CodeEditor code={code1} onChange={() => { }} />
+        <h3 className={`text-2xl font-bold mb-4 font-serif ${titleClassName}`}>{title1}</h3>
+        <CodeEditor code={code1} onChange={() => {}} />
       </motion.div>
       <motion.div
         variants={{
@@ -32,8 +42,8 @@ export const ComparisonSection = ({ title1, code1, title2, code2, performanceDat
           hidden: { opacity: 0, x: 50 }
         }}
       >
-        <h3 className="text-2xl font-bold mb-4 text-gray-800 font-serif">{title2}</h3>
-        <CodeEditor code={code2} onChange={() => { }} />
+        <h3 className={`text-2xl font-bold mb-4 font-serif ${titleClassName}`}>{title2}</h3>
+        <CodeEditor code={code2} onChange={() => {}} />
       </motion.div>
     </div>
     <motion.div
@@ -43,9 +53,8 @@ export const ComparisonSection = ({ title1, code1, title2, code2, performanceDat
       }}
       className="mt-12"
     >
-      <h3 className="text-2xl font-bold mb-6 text-gray-800 font-serif">Performance Comparison</h3>
+      <h3 className={`text-2xl font-bold mb-6 font-serif ${titleClassName}`}>Performance Comparison</h3>
       <BarGraph data={performanceData} />
     </motion.div>
   </div>
 );
-
